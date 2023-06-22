@@ -10,6 +10,7 @@ sql_keywords = ['select', 'from', 'where', 'group', 'order', 'limit', 'intersect
     'except', 'join', 'on', 'as', 'not', 'between', 'in', 'like', 'is', 'exists', 'max', 'min', \
         'count', 'sum', 'avg', 'and', 'or', 'desc', 'asc']
 
+
 def parse_option():
     parser = argparse.ArgumentParser("")
     
@@ -38,6 +39,7 @@ def parse_option():
 
     return opt
 
+
 def get_db_contents(question, table_name_original, column_names_original, db_id, db_path):
     matched_contents = []
     # extract matched contents for each column
@@ -52,6 +54,7 @@ def get_db_contents(question, table_name_original, column_names_original, db_id,
         matched_contents.append(matches)
     
     return matched_contents
+
 
 def get_db_schemas(all_db_infos):
     db_schemas = {}
@@ -182,6 +185,7 @@ def normalization(sql):
     
     return processing_func(sql)
 
+
 # extract the skeleton of sql and natsql
 def extract_skeleton(sql, db_schema):
     table_names_original, table_dot_column_names_original, column_names_original = [], [], []
@@ -248,11 +252,13 @@ def extract_skeleton(sql, db_schema):
 
     return sql_skeleton
 
+
 def isNegativeInt(string):
     if string.startswith("-") and string[1:].isdigit():
         return True
     else:
         return False
+
 
 def isFloat(string):
     if string.startswith("-"):
@@ -266,6 +272,7 @@ def isFloat(string):
             if not s_i.isdigit():
                 return False
         return True
+
 
 def main(opt):
     dataset = json.load(open(opt.input_dataset_path))
@@ -404,6 +411,7 @@ def main(opt):
     with open(opt.output_dataset_path, "w") as f:
         preprocessed_dataset_str = json.dumps(preprocessed_dataset, indent = 2)
         f.write(preprocessed_dataset_str)
+
 
 if __name__ == "__main__":
     opt = parse_option()

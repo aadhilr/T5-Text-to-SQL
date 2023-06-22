@@ -18,6 +18,7 @@ from utils.load_dataset import Text2SQLDataset
 from utils.text2sql_decoding_utils import decode_sqls, decode_natsqls
 import wandb
 
+
 def parse_option():
     parser = argparse.ArgumentParser("command line arguments for fine-tuning pre-trained language model.")
     
@@ -72,6 +73,7 @@ def parse_option():
     opt = parser.parse_args()
 
     return opt
+
 
 def _train(opt):
     set_seed(opt.seed)
@@ -224,7 +226,8 @@ def _train(opt):
                 os.makedirs(opt.save_path, exist_ok = True)
                 model.save_pretrained(save_directory = opt.save_path + "/checkpoint-{}".format(train_step))
                 text2sql_tokenizer.save_pretrained(save_directory = opt.save_path + "/checkpoint-{}".format(train_step))
-    
+
+
 def _test(opt):
     set_seed(opt.seed)
     print(opt)
@@ -342,7 +345,8 @@ def _test(opt):
         print('exec score: {}'.format(spider_metric_result["exec"]))
     
         return spider_metric_result["exact_match"], spider_metric_result["exec"]
-    
+
+
 if __name__ == "__main__":
 
     wandb.init(project="text_to_sql_t5")

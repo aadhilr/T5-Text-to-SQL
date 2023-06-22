@@ -17,6 +17,7 @@ from transformers.trainer_utils import set_seed
 from torch.utils.tensorboard import SummaryWriter
 from utils.load_dataset import ColumnAndTableClassifierDataset
 
+
 def parse_option():
     parser = argparse.ArgumentParser("command line arguments for fine-tuning schema item classifier.")
     
@@ -60,7 +61,8 @@ def parse_option():
     opt = parser.parse_args()
 
     return opt
-    
+
+
 def prepare_batch_inputs_and_labels(batch, tokenizer):
     batch_size = len(batch)
     
@@ -178,6 +180,7 @@ def prepare_batch_inputs_and_labels(batch, tokenizer):
         batch_aligned_column_labels, batch_aligned_table_labels, \
         batch_aligned_question_ids, batch_aligned_column_info_ids, \
         batch_aligned_table_name_ids, batch_column_number_in_each_table
+
 
 def _train(opt):
     print(opt)
@@ -368,6 +371,7 @@ def _train(opt):
             break
     
     print("best auc score:", best_score)
+
 
 def _test(opt):
     set_seed(opt.seed)

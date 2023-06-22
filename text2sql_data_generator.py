@@ -4,6 +4,7 @@ import argparse
 import random
 import numpy as np
 
+
 def parse_option():
     parser = argparse.ArgumentParser("command line arguments for generating the ranked dataset.")
     
@@ -32,12 +33,14 @@ def parse_option():
 
     return opt
 
+
 def lista_contains_listb(lista, listb):
     for b in listb:
         if b not in lista:
             return 0
     
     return 1
+
 
 def prepare_input_and_output(opt, ranked_data):
     question = ranked_data["question"]
@@ -92,6 +95,7 @@ def prepare_input_and_output(opt, ranked_data):
             output_sequence = ranked_data["norm_natsql"]
 
     return input_sequence, output_sequence
+
 
 def generate_train_ranked_dataset(opt):
     with open(opt.input_dataset_path) as f:
@@ -184,6 +188,7 @@ def generate_train_ranked_dataset(opt):
     with open(opt.output_dataset_path, "w") as f:
         f.write(json.dumps(output_dataset, indent = 2))
 
+
 def generate_eval_ranked_dataset(opt):
     with open(opt.input_dataset_path) as f:
         dataset = json.load(f)
@@ -264,6 +269,7 @@ def generate_eval_ranked_dataset(opt):
     if opt.mode == "eval":
         print("Table top-{} coverage: {}".format(opt.topk_table_num, sum(table_coverage_state_list)/len(table_coverage_state_list)))
         print("Column top-{} coverage: {}".format(opt.topk_column_num, sum(column_coverage_state_list)/len(column_coverage_state_list)))
+
 
 if __name__ == "__main__":
     opt = parse_option()

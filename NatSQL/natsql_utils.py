@@ -4,6 +4,7 @@ from .natsql2sql.natsql2sql import Args
 natsql2sql_args = Args()
 natsql2sql_args.not_infer_group = True
 
+
 def natsql_to_sql(natsql, db_id, db_file_path, table_info):
     try:
         query, _, __ = create_sql_from_natSQL(

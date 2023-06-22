@@ -3,9 +3,6 @@ import json
 input_dataset_path = "./data/preprocessed_data/preprocessed_train_spider.json"
 output_dataset_path = "./data/preprocessed_data/resdsql_train_spider_wo_both.json"
 
-# input_dataset_path = "./data/preprocessed_data/preprocessed_dev.json"
-# output_dataset_path = "./data/preprocessed_data/resdsql_dev_wo_both.json"
-
 dataset = json.load(open(input_dataset_path, "r"))
 output_dataset = []
 

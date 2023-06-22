@@ -4,6 +4,7 @@ import json
 
 from text2sql import _test
 
+
 def parse_option():
     parser = argparse.ArgumentParser("command line arguments for selecting the best ckpt.")
     
