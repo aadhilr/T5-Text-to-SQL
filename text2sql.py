@@ -16,6 +16,7 @@ from transformers.trainer_utils import set_seed
 from utils.spider_metric.evaluator import EvaluateTool
 from utils.load_dataset import Text2SQLDataset
 from utils.text2sql_decoding_utils import decode_sqls, decode_natsqls
+import wandb
 
 def parse_option():
     parser = argparse.ArgumentParser("command line arguments for fine-tuning pre-trained language model.")
@@ -142,6 +143,8 @@ def _train(opt):
         num_warmup_steps = num_warmup_steps,
         num_training_steps = num_training_steps
     )
+
+    wandb.watch(model, log='parameters')
 
     model.train()
     train_step = 0
@@ -341,6 +344,8 @@ def _test(opt):
         return spider_metric_result["exact_match"], spider_metric_result["exec"]
     
 if __name__ == "__main__":
+
+    wandb.init(project="text_to_sql_t5")
     opt = parse_option()
     if opt.mode in ["train"]:
         _train(opt)

@@ -38,7 +38,7 @@ python schema_item_classifier.py \
     --use_contents \
     --mode "test"
 
-# generate text2natsql test set
+# generate text2sql test set
 python text2sql_data_generator.py \
     --input_dataset_path "./data/preprocessed_data/spider_realistic_with_probs_natsql.json" \
     --output_dataset_path "./data/preprocessed_data/resdsql_spider_realistic_natsql.json" \
