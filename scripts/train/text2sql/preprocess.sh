@@ -5,7 +5,7 @@ python preprocessing.py \
     --mode "train" \
     --table_path "./data/spider/tables.json" \
     --input_dataset_path "./data/spider/train_spider.json" \
-    --natsql_dataset_path "./NatSQL/NatSQLv1_6/train_spider-natsql.json" \
+    --natsql_dataset_path "./SQL/NatSQLv1_6/train_spider-natsql.json" \
     --output_dataset_path "./data/preprocessed_data/preprocessed_train_spider_natsql.json" \
     --db_path "./database" \
     --target_type "natsql"
@@ -15,13 +15,13 @@ python preprocessing.py \
     --mode "eval" \
     --table_path "./data/spider/tables.json" \
     --input_dataset_path "./data/spider/dev.json" \
-    --natsql_dataset_path "./NatSQL/NatSQLv1_6/dev-natsql.json" \
+    --natsql_dataset_path "./SQL/NatSQLv1_6/dev-natsql.json" \
     --output_dataset_path "./data/preprocessed_data/preprocessed_dev_natsql.json" \
     --db_path "./database" \
     --target_type "natsql"
 
 # preprocess tables.json for natsql
-python NatSQL/table_transform.py \
+python SQL/table_transform.py \
     --in_file "./data/spider/tables.json" \
     --out_file "./data/preprocessed_data/tables_for_natsql.json" \
     --correct_col_type \

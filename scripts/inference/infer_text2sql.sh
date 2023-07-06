@@ -5,22 +5,22 @@ tables_for_natsql="./data/preprocessed_data/test_tables_for_natsql.json"
 
 if [ $1 = "base" ]
 then
-    text2natsql_model_save_path="./models/text2natsql-t5-base/checkpoint-14352"
-    text2natsql_model_bs=4
+    text2sql_model_save_path="./models/text2natsql-t5-base/checkpoint-19992"
+    text2sql_model_bs=4
 elif [ $1 = "large" ]
 then
-    text2natsql_model_save_path="./models/text2natsql-t5-large/checkpoint-21216"
-    text2natsql_model_bs=8
+    text2sql_model_save_path="./models/text2natsql-t5-large/checkpoint-21216"
+    text2sql_model_bs=8
 elif [ $1 = "3b" ]
 then
-    text2natsql_model_save_path="./models/text2natsql-t5-3b/checkpoint-78302"
-    text2natsql_model_bs=6
+    text2sql_model_save_path="./models/text2natsql-t5-3b/checkpoint-78302"
+    text2sql_model_bs=6
 else
     echo "The first arg must in [base, large, 3b]."
     exit
 fi
 
-model_name="resdsql_$1_natsql"
+model_name="sic_t5_$1_sql"
 
 if [ $2 = "spider" ]
 then
@@ -29,6 +29,13 @@ then
     input_dataset_path="./data/spider/dev.json"
     db_path="./database"
     output="./predictions/Spider-dev/$model_name/pred.sql"
+elif [ $2 = "custom" ]
+then
+    # custom data
+    table_path="./data/spider/custom_tables.json"
+    input_dataset_path="./data/spider/custom_test.json"
+    db_path="./database"
+    output="./predictions/Spider-dev/$model_name/custom_pred.sql"
 elif [ $2 = "spider-realistic" ]
 then
     # spider-realistic
@@ -162,7 +169,7 @@ else
 fi
 
 # prepare table file for natsql
-python NatSQL/table_transform.py \
+python SQL/table_transform.py \
     --in_file $table_path \
     --out_file $tables_for_natsql \
     --correct_col_type \
@@ -206,16 +213,16 @@ python text2sql_data_generator.py \
 
 # inference using the best text2sql ckpt
 python text2sql.py \
-    --batch_size $text2natsql_model_bs \
+    --batch_size $text2sql_model_bs \
     --device $device \
     --seed 42 \
-    --save_path $text2natsql_model_save_path \
+    --save_path $text2sql_model_save_path \
     --mode "eval" \
     --dev_filepath "./data/preprocessed_data/resdsql_test_natsql.json" \
     --original_dev_filepath $input_dataset_path \
     --db_path $db_path \
     --tables_for_natsql $tables_for_natsql \
-    --num_beams 8 \
-    --num_return_sequences 8 \
+    --num_beams 4 \
+    --num_return_sequences 4 \
     --target_type "natsql" \
     --output $output

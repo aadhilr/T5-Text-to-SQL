@@ -22,11 +22,11 @@ def parse_option():
                                 ./data/spider/train_spider.json
                                 ./data/spider/dev.json
                             ''')
-    parser.add_argument('--natsql_dataset_path', type = str, default = "./NatSQL/NatSQLv1_6/train_spider-natsql.json", 
+    parser.add_argument('--natsql_dataset_path', type = str, default = "./SQL/NatSQLv1_6/train_spider-natsql.json",
                         help = '''
                             options:
-                                ./NatSQL/NatSQLv1_6/train_spider-natsql.json
-                                ./NatSQL/NatSQLv1_6/dev-natsql.json
+                                ./SQL/NatSQLv1_6/train_spider-natsql.json
+                                ./SQL/NatSQLv1_6/dev-natsql.json
                             ''')
     parser.add_argument('--output_dataset_path', type = str, default = "./data/pre-processing/preprocessed_dataset.json", 
                         help = "the filepath of preprocessed dataset.")

@@ -2,11 +2,11 @@ set -e
 
 # train text2sql-t5-base model
 python -u text2sql.py \
-    --batch_size 16 \
+    --batch_size 4 \
     --gradient_descent_step 2 \
     --device "0" \
     --learning_rate 1e-4 \
-    --epochs 128 \
+    --epochs 16 \
     --seed 42 \
     --save_path "./models/text2natsql-t5-base" \
     --tensorboard_save_path "./tensorboard_log/text2natsql-t5-base" \
@@ -17,7 +17,7 @@ python -u text2sql.py \
     
 # select the best text2sql-t5-base ckpt
 python -u evaluate_text2sql_ckpts.py \
-    --batch_size 32 \
+    --batch_size 2 \
     --device "0" \
     --seed 42 \
     --save_path "./models/text2natsql-t5-base" \

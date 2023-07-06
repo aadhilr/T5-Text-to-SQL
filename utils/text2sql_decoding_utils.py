@@ -2,7 +2,7 @@ import os
 import sqlite3
 
 from difflib import SequenceMatcher
-from NatSQL.natsql_utils import natsql_to_sql
+from SQL.natsql_utils import natsql_to_sql
 from func_timeout import func_set_timeout, FunctionTimedOut
 from sql_metadata import Parser
 
