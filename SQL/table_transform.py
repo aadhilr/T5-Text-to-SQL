@@ -878,7 +878,7 @@ if __name__ == '__main__':
 
     # 2. Prepare data
     tables = json.load(open(args.in_file,'r'))
-    all_words = pickle.load(open(os.path.join("./NatSQL/data/20k.pkl"), 'rb'))
+    all_words = pickle.load(open(os.path.join("./SQL/data/20k.pkl"), 'rb'))
     new_tables = []
 
     lstem = MyStemmer()

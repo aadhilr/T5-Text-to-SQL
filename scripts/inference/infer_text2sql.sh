@@ -32,7 +32,7 @@ then
 elif [ $2 = "custom" ]
 then
     # custom data
-    table_path="./data/spider/custom_tables.json"
+    table_path="./data/spider/tables.json"
     input_dataset_path="./data/spider/custom_test.json"
     db_path="./database"
     output="./predictions/Spider-dev/$model_name/custom_pred.sql"
